@@ -1,2 +1,2 @@
-# SASS-Basic
+# SASS-Basics
 Learn the basics of SCSS
