@@ -1,0 +1,19 @@
+{
+  "name": "sass-basics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "gulp": "gulp"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^5.0.0"
+  },
+  "devDependencies": {
+    "gulp-purgecss": "^7.0.2",
+    "gulp-sass": "^5.1.0",
+    "sass": "^1.80.6"
+  }
+}
