@@ -1,0 +1,35 @@
+//DEPENDENCIES
+// npm init -y
+// npm install gulp
+// npm install gulp-sass
+// npm install sass --save-dev
+// npm install gulp-purgecss
+
+//HOW TO INVOKE: npm run gulp
+//------------------------
+//HOW TO WATCH FILES: sass --watch [scss file] [path to write css file]
+
+// https://www.youtube.com/watch?v=_kqN4hl9bGc&list=PL4cUxeGkcC9jxJX7vojNVK-o8ubDZEcNb&index=1
+
+//IMPORTS / PARTIALS_:
+//----------
+@use "functions";
+@use "variables" as vars; //how to import variables.scss
+
+//base & layout:
+@use "base" as base;
+@use "breakpoints" as breakpoint;
+@use "grid" as grid;
+
+//colors
+@use "colors" as colors;
+
+//components (button, card, navbar, etc)
+@use "components/card" as card;
+@use "components/button" as button;
+@use "components/navbar" as navbar;
+
+//utilities (margin, padding, opacity, etc)
+@use "utilities" as utl;
+
+//[Note:] Order of import DOES matter.
