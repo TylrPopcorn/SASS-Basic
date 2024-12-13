@@ -1,0 +1,64 @@
+// the '_' before the file names 'partial' so the compiler will not compile this file.
+@use "sass:map"; // Import the map module
+
+//-----------
+//VARIABLES:
+//-----------
+//colors
+$primary: #326dee !default;
+$secondary: #1ac888 !default;
+$error: #d32752;
+$info: #f6c31c;
+
+//color palette
+$colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "error": $error,
+  "info": $info,
+  "blue": #1919e6,
+  "red": #e61919,
+  "yellow": #e6e619,
+  "green": #19e635,
+  "orange": #ffa600,
+);
+
+.test-btn {
+  background-color: map.get($colors, "red"); //set test-btn to red
+}
+
+//--------------
+//DEBUG MAP FUNCTIONS EXAMPLES:
+//--------------
+@debug map.get($colors, "red"); //print out the color
+@debug map.has-key($colors, "secondary");
+@debug map.remove(
+  $colors,
+  "primary"
+); //trying to remove value for key of 'primary'
+
+//add variable to the colors table:
+@debug map.merge(
+  $colors,
+  (
+    "pink": #ffc0cb,
+  )
+);
+
+//spacing
+$base-padding: 0.75rem;
+$base-margin: 0.75rem;
+
+//borders
+$base-border-thickness: 1px;
+$base-border-radius: 20px;
+
+// box-shadow
+$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.1);
+
+//font sizes
+$base-font-size: 1rem;
+$font-size-sm: $base-font-size * 0.75;
+$font-size-lg: $base-font-size * 1.5;
+$font-size-xl: $base-font-size * 2;
+$font-size-xxl: $base-font-size * 3;
