@@ -1,0 +1,231 @@
+// the '_' before the file names 'partial' so the compiler will not compile this file.
+@use "sass:math";
+@use "sass:map";
+
+@use "variables" as vars;
+
+$utilities: (
+  //property
+  "padding":
+    (
+      //map
+      "prefix": "p",
+      "values": (
+        "0": 0,
+        "1": vars.$base-padding,
+        "2": vars.$base-padding * 2,
+        "3": vars.$base-padding * 4,
+        "4": vars.$base-padding * 6,
+        "5": vars.$base-padding * 8,
+      )
+    ),
+  //property
+  "padding-left":
+    (
+      //map
+      "prefix": "pl",
+      "values": (
+        "0": 0,
+        "1": vars.$base-padding,
+        "2": vars.$base-padding * 2,
+        "3": vars.$base-padding * 4,
+        "4": vars.$base-padding * 6,
+        "5": vars.$base-padding * 8,
+      )
+    ),
+  //property
+  "padding-right":
+    (
+      //map
+      "prefix": "pr",
+      "values": (
+        "0": 0,
+        "1": vars.$base-padding,
+        "2": vars.$base-padding * 2,
+        "3": vars.$base-padding * 4,
+        "4": vars.$base-padding * 6,
+        "5": vars.$base-padding * 8,
+      )
+    ),
+  //property
+  "padding-top":
+    (
+      //map
+      "prefix": "pt",
+      "values": (
+        "0": 0,
+        "1": vars.$base-padding,
+        "2": vars.$base-padding * 2,
+        "3": vars.$base-padding * 4,
+        "4": vars.$base-padding * 6,
+        "5": vars.$base-padding * 8,
+      )
+    ),
+  //property
+  "padding-bottom":
+    (
+      //map
+      "prefix": "pb",
+      "values": (
+        "0": 0,
+        "1": vars.$base-padding,
+        "2": vars.$base-padding * 2,
+        "3": vars.$base-padding * 4,
+        "4": vars.$base-padding * 6,
+        "5": vars.$base-padding * 8,
+      )
+    ),
+  //property
+  "margin":
+    (
+      //map
+      "prefix": "m",
+      "values": (
+        "0": 0,
+        "1": vars.$base-margin,
+        "2": vars.$base-margin * 2,
+        "3": vars.$base-margin * 4,
+        "4": vars.$base-margin * 6,
+        "5": vars.$base-margin * 8,
+      )
+    ),
+  //property
+  "margin-left":
+    (
+      //map
+      "prefix": "ml",
+      "values": (
+        "0": 0,
+        "1": vars.$base-margin,
+        "2": vars.$base-margin * 2,
+        "3": vars.$base-margin * 4,
+        "4": vars.$base-margin * 6,
+        "5": vars.$base-margin * 8,
+      )
+    ),
+  //property
+  "margin-right":
+    (
+      //map
+      "prefix": "mr",
+      "values": (
+        "0": 0,
+        "1": vars.$base-margin,
+        "2": vars.$base-margin * 2,
+        "3": vars.$base-margin * 4,
+        "4": vars.$base-margin * 6,
+        "5": vars.$base-margin * 8,
+      )
+    ),
+  //property
+  "margin-top":
+    (
+      //map
+      "prefix": "mt",
+      "values": (
+        "0": 0,
+        "1": vars.$base-margin,
+        "2": vars.$base-margin * 2,
+        "3": vars.$base-margin * 4,
+        "4": vars.$base-margin * 6,
+        "5": vars.$base-margin * 8,
+      )
+    ),
+  //property
+  "margin-bottom":
+    (
+      //map
+      "prefix": "mb",
+      "values": (
+        "0": 0,
+        "1": vars.$base-margin,
+        "2": vars.$base-margin * 2,
+        "3": vars.$base-margin * 4,
+        "4": vars.$base-margin * 6,
+        "5": vars.$base-margin * 8,
+      )
+    ),
+  //property
+  "opacity":
+    (
+      //map
+      "prefix": "o",
+      "values": (
+        "10": 0.1,
+        "20": 0.2,
+        "30": 0.3,
+        "40": 0.4,
+        "50": 0.5,
+        "60": 0.6,
+        "70": 0.7,
+        "80": 0.8,
+        "90": 0.9,
+        "100": 1,
+      )
+    ),
+  //property
+  "border-radius":
+    (
+      //map
+      "prefix": "br",
+      "values": (
+        "default": vars.$base-border-radius,
+        "none": 0,
+        "xs": math.div(vars.$base-border-radius, 4),
+        "sm": math.div(vars.$base-border-radius, 2),
+        "lg": vars.$base-border-radius * 2,
+        "full": 50%,
+      )
+    ),
+  //property
+  "display":
+    (
+      //map
+      "prefix": "display",
+      "values": (
+        "n": none,
+        "b": block,
+        "f": flex,
+        "i": inline,
+        "i-b": inline-block,
+      )
+    ),
+  //property
+  "font-size":
+    (
+      //map
+      "prefix": "font",
+      "values": (
+        "sm": vars.$font-size-sm,
+        "md": vars.$base-font-size,
+        "lg": vars.$font-size-lg,
+        "xl": vars.$font-size-xl,
+        "xxl": vars.$font-size-xxl,
+      )
+    )
+);
+
+//---------------               -----------------------------
+//generate utility classes
+@each $property, $map in $utilities {
+  //for each property in the map
+  $prefix: map.get($map, "prefix"); //get the prefix
+  $values: map.get($map, "values");
+
+  @each $k, $v in $values {
+    @if ($k and $prefix) {
+      // Ensure both are valid
+      @if ($k == "default") {
+        .#{$prefix} {
+          #{$property}: $v;
+        }
+      } @else {
+        .#{$prefix}-#{$k} {
+          #{$property}: $v;
+        }
+      }
+    } @else {
+      @warn "Invalid prefix or key: #{$prefix}, #{$k}";
+    }
+  }
+}
