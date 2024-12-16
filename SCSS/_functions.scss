@@ -1,0 +1,13 @@
+// the '_' before the file names 'partial' so the compiler will not compile this file.
+@use "sass:color";
+
+@function complement($color) {
+  @return color.adjust($color, $hue: 180deg);
+}
+
+@function light-comp($color) {
+  $complement: complement($color); //variable.
+  $light-complement: color.adjust($complement, $lightness: 30%);
+  //return statement:
+  @return $light-complement;
+}
