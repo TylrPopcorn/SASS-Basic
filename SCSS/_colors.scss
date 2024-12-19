@@ -1,0 +1,79 @@
+@use "variables" as vars; // Ensure variables are imported
+@use "sass:color"; // takes the same parameters as the deprecated mix() function, but it's part of the sass:color module
+
+@each $key, $val in vars.$colors {
+  //cycle through colors and do something for each pair
+
+  //generate classes for each key / val
+  .text-#{$key} {
+    color: $val;
+  }
+
+  .text-hover-#{$key} {
+    &:hover {
+      //hover effect
+      color: $val;
+    }
+  }
+
+  .bg-#{$key} {
+    background-color: $val;
+  }
+
+  //'if' conditional statement:
+  @if ($val != black and $val != white) {
+    //light variations class
+    @for $i from 1 through 9 {
+      //for variable 'i' from 1-9
+
+      .text-#{$key}-light-#{$i} {
+        // color: mix(white, $val, $i * 10); //deprecated
+        color: color.mix(white, $val, $i * 10%);
+      }
+
+      .text-hover-#{$key}-light-#{$i} {
+        &:hover {
+          //hover effect
+          color: color.mix(white, $val, $i * 10%);
+        }
+      }
+
+      .bg-#{$key}-light-#{$i} {
+        // background-color: mix(white, $val, $i * 10); //deprecated
+        background-color: color.mix(white, $val, $i * 10%);
+      }
+    }
+
+    //dark variations class
+    @for $i from 1 through 9 {
+      .text-#{$key}-dark-#{$i} {
+        color: color.mix(black, $val, $i * 10%);
+      }
+
+      .text-hover-#{$key}-dark-#{$i} {
+        &:hover {
+          //hover effect
+          color: color.mix(black, $val, $i * 10%);
+        }
+      }
+
+      .bg-#{$key}-dark-#{$i} {
+        background-color: color.mix(black, $val, $i * 10%);
+      }
+    }
+  }
+}
+
+//
+//example of an 'if' conditional statement:
+@if (10 > 5) {
+  //do something
+  .test-if {
+    color: black;
+  }
+} @else {
+  //do something else
+  .test-if-2 {
+    color: white;
+  }
+}
