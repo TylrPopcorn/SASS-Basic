@@ -1,0 +1,51 @@
+// the '_' before the file names 'partial' so the compiler will not compile this file.
+@use "../variables" as vars; // Ensure variables are imported
+@use "../functions";
+@use "../breakpoints" as breakpoint;
+
+@use "sass:color";
+
+//can mix properties to multiple places
+@mixin btn($bg-color: #e2e2e2) {
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  padding: vars.$base-padding vars.$base-padding * 2;
+  border: 0;
+  border-radius: vars.$base-border-radius;
+  background-color: $bg-color;
+}
+
+@each $key, $val in vars.$colors {
+  .btn-#{$key} {
+    //Will include all of the properties from 'btn' from above.
+    @include btn($val);
+    &:hover {
+      //hover function
+      background-color: color.adjust($val, $lightness: 5%);
+    }
+  }
+  .btn-outlined-#{$key} {
+    @include btn(); //Will include all of the properties from 'btn' from above.
+    border: vars.$base-border-thickness solid $val;
+    background-color: #fff;
+
+    &:hover {
+      //hover function
+      background-color: $val;
+    }
+  }
+  .btn-complement-#{$key} {
+    @include btn($val);
+    color: functions.light-comp($val);
+
+    &:hover {
+      color: $val;
+      background-color: functions.light-comp($val);
+    }
+  }
+}
+
+.btn {
+  @include btn;
+}
