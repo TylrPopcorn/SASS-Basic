@@ -1,0 +1,29 @@
+//Component for the navbar
+
+@use "../variables" as vars;
+
+%flex-layout {
+  // % means it will be used as a placeholder and wont get ouptutted to final CSS
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.navbar {
+  @extend %flex-layout; //apply flex-layout properties to this table too
+  padding: vars.$base-padding vars.$base-padding * 2;
+  box-shadow: vars.$base-box-shadow;
+
+  .site-title {
+    font-size: vars.$font-size-lg;
+  }
+}
+
+@each $key, $val in vars.$colors {
+  .navbar-#{key} {
+    @extend .navbar;
+    background-color: $val;
+  }
+}
