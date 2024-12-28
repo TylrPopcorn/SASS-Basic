@@ -15,6 +15,12 @@ Live: https://sass-basics.onrender.com/
 ![image](https://github.com/user-attachments/assets/03173f51-61db-476d-935c-addb64d56c61)
 <sup>Credit goes to the original/external sources used.</sup>
 
+<b>Extra Resources:
+- SASS: https://sass-lang.com/
+- Documentation: https://sass-lang.com/documentation/
+- Project: https://www.youtube.com/watch?v=_kqN4hl9bGc&list=PL4cUxeGkcC9jxJX7vojNVK-o8ubDZEcNb
+</b>
+
 
 
 # Related Projects
